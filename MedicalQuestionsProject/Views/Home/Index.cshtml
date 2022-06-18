@@ -1,0 +1,41 @@
+﻿@model List<MedicalQuestionsProject.ViewModels.QuestionViewModel>
+
+@{
+    ViewBag.Title = "Home";
+}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="jumbotron">
+            <h1>Learn, Shared, Build!</h1>
+            <h3>Every month, more than 50 million people come to Medical Questions to learn, share knowledge, prevent diseases as well as take preventive measures to ensure their own safety.</h3>
+            <p class="lead">Join the world's largest developer community</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="mb-3">
+            <a class="mr-3" href="/home/topviews">Top Views</a>
+            <a class="mr-3" href="/home/topvotes">Top Votes</a>
+            <a href="/home/newest">Newest Question</a>
+        </div>
+
+
+
+        <table class="table">
+            @foreach (var item in Model)
+            {
+                Html.RenderPartial("Question", item);
+            }
+        </table>
+        @if (Session["CurrentUserName"] != null)
+        {
+            <a href="/questions/create" class="btn btn-primary">Add Question</a>
+        }
+    </div>
+</div>
+
+<script>
+    $("a[href='/home/index']").attr("id", "active");
+</script>

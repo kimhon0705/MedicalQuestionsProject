@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MedicalQuestionsProject.DomainModels.Question>
+
+@{
+    ViewBag.Title = "Manager Questions";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p class="btn mt-3" >
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionDateAndTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VotesCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnswersCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ViewsCount)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionDateAndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VotesCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnswersCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ViewsCount)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.QuestionID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.QuestionID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
