@@ -15,6 +15,11 @@ namespace MedicalQuestionsProject.Controllers
         IAnswersService asr;
         ICategoriesService cs;
 
+        public ActionResult Delete(int commentId, int questionId)
+        {
+            asr.DeleteAnswer(commentId);
+            return RedirectToAction("View", "Questions", new { id = questionId });
+        }
 
         public QuestionsController(IQuestionsService qs, IAnswersService asr, ICategoriesService cs)
         {
