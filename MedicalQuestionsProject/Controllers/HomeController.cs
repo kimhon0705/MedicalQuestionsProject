@@ -68,5 +68,10 @@ namespace MedicalQuestionsProject.Controllers
             ViewBag.str = str;
             return View(questions);
         }
+
+        public ActionResult Agree()
+        {
+            return View();
+        }
     }
 }

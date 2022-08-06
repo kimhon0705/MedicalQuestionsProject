@@ -260,6 +260,7 @@
     <Content Include="Views\AdminAccount\Create.cshtml" />
     <Content Include="Views\AdminAccount\Edit.cshtml" />
     <Content Include="Views\AdminAccount\Delete.cshtml" />
+    <Content Include="Views\Home\Agree.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
