@@ -3,21 +3,112 @@
 @{
     ViewBag.Title = "Search";
 }
+<header>
+    <style>
+        body {
+            background-color: #f7f6f6
+        }
 
-<div class="row">
-    <div class="col-sm-12">
-        <h3>Search results for @ViewBag.str</h3>
-        <table class="table">
-            @foreach (var item in Model)
-            {
-                Html.RenderPartial("Question", item);
+        .title {
+            font-weight: bold;
+            font-style: italic;
+            padding-bottom: 10px;
+            color: green;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 5px 6px 6px 2px #e9ecef;
+            border-radius: 4px
+        }
+
+        .dots {
+            height: 4px;
+            width: 4px;
+            margin-bottom: 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block
+        }
+
+        .badge {
+            padding: 7px;
+            padding-right: 9px;
+            padding-left: 16px;
+            box-shadow: 5px 6px 6px 2px #e9ecef
+        }
+
+        .user-img {
+            margin-top: 4px
+        }
+
+        .check-icon {
+            font-size: 17px;
+            color: #c3bfbf;
+            top: 1px;
+            position: relative;
+            margin-left: 3px
+        }
+
+        .form-check-input {
+            margin-top: 6px;
+            margin-left: -24px !important;
+            cursor: pointer
+        }
+
+            .form-check-input:focus {
+                box-shadow: none
             }
-        </table>
+
+        .icons i {
+            margin-left: 8px
+        }
+
+        .reply {
+            margin-left: 12px
+        }
+
+            .reply small {
+                color: #b7b4b4
+            }
+
+                .reply small:hover {
+                    color: green;
+                    cursor: pointer
+                }
+    </style>
+</header>
+<div class="w3-container" style="padding:10px 10px">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="title">Search results for @ViewBag.str</h1>
+            <table class="table">
+                <div class="w3-container w3-light-grey" style="padding:20px 16px" id="team">
+                    <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
+                        @foreach (var item in Model)
+                        {
+                        <div class="w3-col l3 m6 w3-margin-bottom">
+                            <div class="w3-card">
+                                <div class="w3-container" style="padding: 1.2rem">
+                                    <h3>@item.QuestionName</h3>
+                                    <p class="w3-opacity"><span style="font-weight:900">Date:</span> @item.QuestionDateAndTime</p>
+                                    <p class="w3-opacity"><span style="font-weight:900">Votes:</span> @item.VotesCount</p>
+                                    <p class="w3-opacity"><span style="font-weight:900">Views:</span> @item.ViewsCount</p>
+
+                                    <p><a href="/questions/view/@item.QuestionID" class="w3-button w3-light-grey w3-block"><i class="fa fa-pencil" aria-hidden="true"></i> LEARN MORE</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </table>
+        </div>
     </div>
 </div>
 
-<script>
-    $("a[href='/allquestions']").attr("id", "active");
-</script>
+    <script>
+        $("a[href='/allquestions']").attr("id", "active");
+    </script>
 
 

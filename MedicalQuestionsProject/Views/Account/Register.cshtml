@@ -2,102 +2,132 @@
 @{
     ViewBag.Title = "Register";
 }
-<section class="vh-100 bg-image"
-         style="background-image: url('https://thumbs.dreamstime.com/z/abstract-molecules-medical-background-green-illustration-92437950.jpg'); ">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-                <div class="container h-100">
-                    <div class="row d-flex justify-content-center align-items-center h-100">
-                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-                            <div class="card" style="border-radius: 15px;">
-                                <div class="card-body p-5">
-                                    <h1 class="text-uppercase text-center mb-5">Registration</h1>
-                                    <form novalidate="novalidate" action="/account/register" method="post" class="needs-validation">
-                                        @Html.AntiForgeryToken()
-                                        <div class="form-row">
-                                            <div class="form-group col-sm-12">
-                                                <label for="txtName">Name</label>
-                                                <input type="text" class="form-control" id="txtName" placeholder="Enter name" name="Name" required="required" pattern="^[a-zA-Z ]*$" autofocus="autofocus" />
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                                <div class="invalid-feedback">
-                                                    Please enter name [alphabets only].
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="form-row">
-                                            <div class="form-group col-sm-12">
-                                                <label for="txtEmail">Email</label>
-                                                <input type="email" class="form-control" id="txtEmail" placeholder="Email" name="Email" required="required" />
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                                <div class="invalid-feedback">
-                                                    Invalid email
-                                                </div>
-                                                <small class="email-exist text-danger"></small>
-                                            </div>
+<head>
+    <meta charset="utf-8">
+    <link href="~/Scripts/style.css" rel="stylesheet" />
+</head>
+<div class="loginbackground box-background--white padding-top--64">
+    <div class="loginbackground-gridContainer">
+        <div class="box-root flex-flex" style="grid-area: top / start / 8 / end;">
+            <div class="box-root" style="background-image: linear-gradient(white 0%, rgb(247, 250, 252) 33%); flex-grow: 1;">
+            </div>
+        </div>
+        <div class="box-root flex-flex" style="grid-area: 4 / 2 / auto / 5;">
+            <div class="box-root box-divider--light-all-2 animationLeftRight tans3s" style="flex-grow: 1;"></div>
+        </div>
+        <div class="box-root flex-flex" style="grid-area: 6 / start / auto / 2;">
+            <div class="box-root box-background--blue800" style="flex-grow: 1;"></div>
+        </div>
+        <div class="box-root flex-flex" style="grid-area: 7 / start / auto / 4;">
+            <div class="box-root box-background--blue animationLeftRight" style="flex-grow: 1;"></div>
+        </div>
+        <div class="box-root flex-flex" style="grid-area: 8 / 4 / auto / 6;">
+            <div class="box-root box-background--gray100 animationLeftRight tans3s" style="flex-grow: 1;"></div>
+        </div>
+        <div class="box-root flex-flex" style="grid-area: 2 / 15 / auto / end;">
+            <div class="box-root box-background--cyan200 animationRightLeft tans4s" style="flex-grow: 1;"></div>
+        </div>
+        <div class="box-root flex-flex" style="grid-area: 3 / 14 / auto / end;">
+            <div class="box-root box-background--blue animationRightLeft" style="flex-grow: 1;"></div>
+        </div>
+        <div class="box-root flex-flex" style="grid-area: 4 / 17 / auto / 20;">
+            <div class="box-root box-background--gray100 animationRightLeft tans4s" style="flex-grow: 1;"></div>
+        </div>
+        <div class="box-root flex-flex" style="grid-area: 5 / 14 / auto / 17;">
+            <div class="box-root box-divider--light-all-2 animationRightLeft tans3s" style="flex-grow: 1;"></div>
+        </div>
+    </div>
+</div>
 
-                                            <div class="form-group col-sm-12">
-                                                <label for="txtMobile">Mobile</label>
-                                                <input type="text" class="form-control" id="txtMobile" placeholder="Mobile" name="Mobile" required="required" pattern="^[789]\d{9}$" />
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                                <div class="invalid-feedback">
-                                                    Invalid mobile Number.
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-row">
-                                            <div class="form-group col-sm-12">
-                                                <label for="txtPassword">Password</label>
-                                                <input type="password" class="form-control" id="txtPassword" placeholder="Password" name="Password" required="required" minlength="6" oninput="form.ConfirmPassword.pattern = escapeRegExp(this.value)" />
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                                <div class="invalid-feedback">
-                                                    Password must contain at least 6 characters.
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group col-sm-12">
-                                                <label for="txtPassword">Confirm Password</label>
-                                                <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm Password" name="ConfirmPassword" required="required" />
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                                <div class="invalid-feedback">
-                                                    Password and Confirm Password do not match.
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <input type="checkbox" name="check" id="toggle" checked value="" />
-                                        <span>I agree all statements in<a href="/home/agree" target="_blank"> Terms of service</a> </span>
-                                        <hr />
-
-
-                                        <button type="submit" class="btn btn-primary" id="add-button">Register</button>
-
-                                        <p class="text-center text-muted mt-5 mb-0">
-                                            Have already an account? <a href="/account/login"
-                                                                        class="fw-bold text-body"><u>Login here</u></a>
-                                        </p>
-                                    </form>
-                                </div>
-                            </div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="mx-auto login-box" style="width:600px">
+            <h2 class="w3-center">Registration</h2>
+            <form novalidate="novalidate" action="/account/register" method="post" class="needs-validation">
+                @Html.AntiForgeryToken()
+                <div class="form-row">
+                    <div class="form-group col-sm-12">
+                        <label for="txtName">Name</label>
+                        <input type="text" class="form-control" id="txtName" placeholder="Enter name" name="Name" required="required" pattern="^[a-zA-Z ]*$" autofocus="autofocus" />
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter name [alphabets only].
                         </div>
                     </div>
                 </div>
-            </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm-12">
+                        <label for="txtEmail">Email</label>
+                        <input type="email" class="form-control" id="txtEmail" placeholder="Email" name="Email" required="required" />
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Invalid email
+                        </div>
+                        <small class="email-exist text-danger"></small>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <label for="txtMobile">Mobile</label>
+                        <input type="text" class="form-control" id="txtMobile" placeholder="Mobile" name="Mobile" required="required" pattern="^[789]\d{9}$" />
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Invalid mobile Number.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm-12">
+                        <label for="txtPassword">Password</label>
+                        <input type="password" class="form-control" id="txtPassword" placeholder="Password" name="Password" required="required" minlength="6" oninput="form.ConfirmPassword.pattern = escapeRegExp(this.value)" />
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Password must contain at least 6 characters.
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <label for="txtPassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="txtConfirmPassword" placeholder="Confirm Password" name="ConfirmPassword" required="required" />
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Password and Confirm Password do not match.
+                        </div>
+                    </div>
+                </div>
+                <input type="checkbox" name="check" id="toggle" checked value=""
+                <span> I agree all statements in<a href="/home/agree" target="_blank"> Terms of service</a> </span>
+
+                <hr />
+
+                <div class="w3-center">
+                    <button type="submit" class="btn btn-success w3-center" id="add-button">Register</button>
+                </div>
+                <p class="text-center text-muted mt-1 mb-0">
+                    Have already an account? <a href="/account/login"
+                                                class="fw-bold text-body"><u>Login here</u></a>
+                </p>
+            </form>
+        </div>
+        <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
+            <span><a href="/home/index">© Medical</a></span>
+            <span><a href="/home/contact">Contact</a></span>
+            <span><a href="/home/about">About</a></span>
         </div>
     </div>
-</section>
+</div>
 <script>
 
     $("a[href='/account/register']").attr("id", "active");

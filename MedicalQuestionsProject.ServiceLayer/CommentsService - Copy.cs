@@ -14,7 +14,6 @@ namespace MedicalQuestionsProject.ServiceLayer
         void InsertAnswer(NewAnswerViewModel avm);
         void UpdateAnswer(EditAnswerViewModel avm);
         void UpdateAnswerVotesCount(int aid, int uid, int value);
-        void UpdateAnswerCommentsCount(int aid, int value);
         void DeleteAnswer(int aid);
         List<AnswerViewModel> GetAnswersByQuestionID(int qid);
         AnswerViewModel GetAnswerByAnswerID(int AnswerID);
@@ -71,11 +70,6 @@ namespace MedicalQuestionsProject.ServiceLayer
                 avm = mapper.Map<Answer, AnswerViewModel>(a);
             }
             return avm;
-        }
-
-        public void UpdateAnswerCommentsCount(int aid, int value)
-        {
-            ar.UpdateAnswerCommentsCount(aid, value);
         }
     }
 }

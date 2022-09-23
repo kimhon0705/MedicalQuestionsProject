@@ -4,166 +4,264 @@
     ViewBag.Title = "View Question";
 }
 
-<div class="row">
-    <div class="col-sm-12">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <div class="form-group form-row">
-            <div class="col-sm-10 offset-sm-2">
-                <h3>@Model.QuestionName</h3>
-                <div class="row">
-                    <div class="col-sm-2">
-                        <span class="badge badge-info">@Model.Category.CategoryName</span>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link href="~/Scripts/ViewQuestionsSheet1.css" rel="stylesheet" />
+</head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="w3-container" style="padding:30px 12px">
+                <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4 w3-card w3-margin-bottom">
+                    <!-- Vote Header -->
+                    <div class="d-flex flex-column-reverse flex-grow-0 align-items-center votings ml-1">
+                        <i class="fa fa-sort-up fa-2x hit-voting"></i>@Model.VotesCount<i class="fa fa-sort-down fa-2x hit-voting"></i>
                     </div>
-                    <div class="col-sm-2">
-                        <span class="text-info">
-                            @if (Convert.ToInt32(Session["CurrentUserID"]) != Model.UserID)
+                    <!-- QuesionsName Header -->
+                    <div class="form-group form-row">
+                        <div class="col-sm-10 offset-sm-2">
+                            <div class="d-flex flex-column ml-3">
+                                <div class="d-flex flex-row post-title">
+                                    <h3>@Model.QuestionName</h3>
+                                    <div class="col-sm-2" style="font-size: 22px">
+                                        <span class="text-info ml-2">
+                                            @if (Convert.ToInt32(Session["CurrentUserID"]) != Model.UserID)
+                                            {
+                                                @:(@Model.User.Name)
+                                            }
+                                            else
+                                            {
+                                                @: (you)
+                                            }
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- Category and datetime Header -->
+                                <div class="d-flex flex-row align-items-center align-content-center post-title">
+                                    <span class="badge badge-info mr-3">@Model.Category.CategoryName</span>
+                                    <i class="mr-1 fa fa-eye" aria-hidden="true"> </i><span class="mr-2 badge badge-pill badge-success col-2">@Model.ViewsCount&nbsp;</span>
+                                    <i class='mr-2 far fa-calendar-alt' style='font-size:24px'></i><span>@Model.QuestionDateAndTime</span>
+                                </div>
+                            </div>
+                            @if (Model.AnswersCount == 0)
                             {
-                                @:by @Model.User.Name
+                                <p class="text-danger">No answers yet!</p>
                             }
-                            else
-                            {
-                                @:by you
-                            }
-                        </span>
-                    </div>
-                    <div class="col-sm-3">
-                        <span class="text-success">by @Model.QuestionDateAndTime</span>
-                    </div>
-                    <div class="col-sm-2">
-                        <span class="badge badge-pill badge-success col-2">
-                            @Model.ViewsCount
-                        </span>
-                        Views
+                        </div>
                     </div>
                 </div>
-
-                @if (Model.AnswersCount == 0)
-                {
-                    <p class="text-danger">No answers yet!</p>
-                }
             </div>
-        </div>
+            <div class="coment-bottom bg-white p-2 px-4">
+                @for (int i = 0; i < Model.Answers.Count; i++)
+                {
+                    <div class="form-group form-row">
+                        <div class="col-sm-2">
+                            <!-- Up Dow vote -->
+                            @if (Session["CurrentUserName"] != null)
+                            {
+                                if (Model.Answers[i].CurrentUserVoteType == 1)
+                                {
+                                    <img src="~/Images/up-color.png" class="btnUpVote" style="cursor:pointer" width="24px" data-answerid="@Model.Answers[i].AnswerID" />
+                                    <span class="badge badge-secondary col-2 votescount">@Model.Answers[i].VotesCount</span>
+                                    <img src="~/Images/down-empty.png" class="btnDownVote" style="cursor:pointer" width="24px" data-answerid="@Model.Answers[i].AnswerID" />
+                                }
 
-        
+                                else if (Model.Answers[i].CurrentUserVoteType == -1)
+                                {
+                                    <img src="~/Images/up-empty.png" class="btnUpVote" style="cursor:pointer" width="24px" data-answerid="@Model.Answers[i].AnswerID" />
+                                    <span class="badge badge-secondary col-2 votescount">@Model.Answers[i].VotesCount</span>
+                                    <img src="~/Images/down-color.png" class="btnDownVote" style="cursor:pointer" width="24px" data-answerid="@Model.Answers[i].AnswerID" />
+                                }
+                                else
+                                {
+                                    <img src="~/Images/up-empty.png" class="btnUpVote" style="cursor:pointer" width="24px" data-answerid="@Model.Answers[i].AnswerID" />
+                                    <span class="badge badge-secondary col-2 votescount">@Model.Answers[i].VotesCount</span>
+                                    <img src="~/Images/down-empty.png" class="btnDownVote" style="cursor:pointer" width="24px" data-answerid="@Model.Answers[i].AnswerID" />
+
+                                }
+
+                                if (Convert.ToInt32(Session["CurrentUserID"]) == Model.UserID)
+                                {
+                                    if (Model.Istrue)
+                                    {
+                                        if (Model.Answers[i].Istrue)
+                                        {
+                                            <a href="/questions/UnCheckRight?answerId=@Model.Answers[i].AnswerID&questionId=@Model.QuestionID">❌</a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (Model.UserID == Convert.ToInt32(Session["CurrentUserID"]))
+                                        {
+
+                                            <a href="/questions/CheckRight?answerId=@Model.Answers[i].AnswerID&questionId=@Model.QuestionID">✅</a>
+                                        }
+                                    }
 
 
-        @for (int i = 0; i < Model.Answers.Count; i++)
-        {
-            <div class="form-group form-row">
-                <div class="col-sm-2">
-                    <span class="badge badge-secondary col-2 votescount">
-                        @Model.Answers[i].VotesCount
-                    </span>
-                    Votes
+                                }
+                                <!-- Check Right -->
+                                if (Convert.ToInt32(Session["CurrentUserID"]) == Model.Answers[i].UserID)
+                                {
+                                    if (Model.Istrue)
+                                    {
+                                        if (Model.Answers[i].Istrue)
+                                        {
+                                            <span>✅ </span>
+                                        }
+                                    }
+                                }
 
-                    @if (Session["CurrentUserName"] != null && Convert.ToInt32(Session["CurrentUserID"]) != Model.Answers[i].UserID)
-                    {
-                        if (Model.Answers[i].CurrentUserVoteType == 1)
-                        {
-                            <img src="~/Images/up-color.png" class="btnUpVote" style="cursor:pointer" width="24px" data-answerid="@Model.Answers[i].AnswerID" />
-                            <img src="~/Images/down-empty.png" class="btnDownVote" style="cursor:pointer" width="24px" data-answerid="@Model.Answers[i].AnswerID" />
-                        }
-                        else if (Model.Answers[i].CurrentUserVoteType == -1)
-                        {
-                            <img src="~/Images/up-empty.png" class="btnUpVote" style="cursor:pointer" width="24px" data-answerid="@Model.Answers[i].AnswerID" />
-                            <img src="~/Images/down-color.png" class="btnDownVote" style="cursor:pointer" width="24px" data-answerid="@Model.Answers[i].AnswerID" />
-                        }
-                        else
-                        {
-                            <img src="~/Images/up-empty.png" class="btnUpVote" style="cursor:pointer" width="24px" data-answerid="@Model.Answers[i].AnswerID" />
-                            <img src="~/Images/down-empty.png" class="btnDownVote" style="cursor:pointer" width="24px" data-answerid="@Model.Answers[i].AnswerID" />
-                        }
-                    }
-                </div>
+                                if (Convert.ToInt32(Session["CurrentUserID"]) != Model.Answers[i].UserID)
+                                {
+                                    if (Model.Istrue)
+                                    {
+                                        if (Model.Answers[i].Istrue)
+                                        {
+                                            <span>✅ </span>
+                                        }
+                                    }
+                                }
 
-                <div class="col-sm-7">
-                    @if (Convert.ToInt32(Session["CurrentUserID"]) != Model.Answers[i].UserID)
-                    {
-                        @Model.Answers[i].AnswerText
-                    }
-                    else
-                    {
-                        <p class="answer">@Model.Answers[i].AnswerText</p>
-                        <button class="btn btn-info editbutton">Edit</button>
-                        <a href="/questions/delete?commentId=@Model.Answers[i].AnswerID&questionId=@Model.QuestionID" class="btn btn-info">Delete</a>
 
-                        <form class="needs-validation hidden" novalidate="novalidate" action="/questions/editanswer" method="post" id="editForm">
-                            <div class="form-group form-row">
-                                <div class="col-sm-12">
-                                    <h4>Edit your answer</h4>
+                            }
+                        </div>
 
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="AnswerID" value="@Model.Answers[i].AnswerID" />
-                                    <input type="hidden" name="QuestionID" value="@Model.Answers[i].QuestionID" />
-                                    <div class="form-row">
-                                        <div class="form-group col-sm-12">
-                                            <textarea class="form-control" id="txtAnswer" placeholder="Enter answer" name="AnswerText" required="required">@Model.Answers[i].AnswerText</textarea>
-                                            <div class="valid-feedback">
-                                                Looks good!
+                        <!-- Edit and delete answer -->
+                        <div class="col-sm-7">
+                            @if (Convert.ToInt32(Session["CurrentUserID"]) == Model.Answers[i].UserID)
+                            {
+                                <button class="btn btn-info editbutton"><i class='fas fa-edit'></i></button>
+                                <a href="/questions/delete?commentId=@Model.Answers[i].AnswerID&questionId=@Model.QuestionID" class="btn btn-info"><i class='fas fa-trash-alt'></i></a>
+
+                                <form class="needs-validation hidden" novalidate="novalidate" action="/questions/editanswer" method="post" id="editForm">
+                                    <div class="form-group form-row">
+                                        <div class="col-sm-12">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="AnswerID" value="@Model.Answers[i].AnswerID" />
+                                            <input type="hidden" name="QuestionID" value="@Model.Answers[i].QuestionID" />
+                                            <div class="form-row">
+                                                <div class="form-group col-sm-12">
+                                                    <textarea class="form-control" id="txtAnswer" placeholder="Enter answer" name="AnswerText" required="required">@Model.Answers[i].AnswerText</textarea>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please enter answer.
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="invalid-feedback">
-                                                Please enter answer.
+
+                                            <button type="submit" class="btn btn-primary" data-formid="editForm">Update Answer</button>
+                                            <div class="text-danger">
+                                                @Html.ValidationSummary()
                                             </div>
                                         </div>
                                     </div>
-
-                                    <button type="submit" class="btn btn-primary" data-formid="editForm">Update Answer</button>
-                                    <div class="text-danger">
-                                        @Html.ValidationSummary()
+                                </form>
+                            }
+                            <!-- Text answer -->
+                        <div class="card p-4 w3-card w3-margin-bottom">
+                            <div class="commented-section mt-2">
+                                <div class="commented-section mt-2">
+                                    <div class="d-flex flex-row align-items-center commented-user">
+                                        <h5 class="mr-3">@Model.Answers[i].User.Name</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">@Model.Answers[i].AnswerDateAndTime</span>
                                     </div>
-                                </div>
-                            </div>
-                        </form>
-                    }
-                </div>
-
-
-
-                <div class="col-sm-1">
-                    @if (Convert.ToInt32(Session["CurrentUserID"]) != Model.Answers[i].UserID)
-                    {
-                        @:by @Model.Answers[i].User.Name
-                    }
-                    else
-                    {
-                        @:by you
-                    }
-                </div>
-                <div class="col-sm-2">
-                    on @Model.Answers[i].AnswerDateAndTime
-                </div>
-            </div>
-        }
-
-        @if (Session["CurrentUsername"] != null)
-        {
-            <form class="needs-validation" novalidate="novalidate" action="/questions/addanswer" method="post" id="newForm">
-                <div class="form-group form-row">
-                    <div class="col-sm-12">
-                        <h4>Add your answer</h4>
-
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" name="QuestionID" value="@Model.QuestionID" />
-                        <div class="form-row">
-                            <div class="form-group col-sm-12">
-                                <textarea class="form-control" id="txtAnswer" placeholder="Enter answer" name="AnswerText" required="required" data-pattern="[A-z0-9 ,-]{1,}"></textarea>
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Please enter answer.
+                                    <div class="col-sm-12 comment-text-sm"><span>@Model.Answers[i].AnswerText</span></div>
                                 </div>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary" data-formid="newForm">Add Answer</button>
-                        <div class="text-danger">
-                            @Html.ValidationSummary()
+                                    <!-- Text comment -->
+                                    @if (Model.Answers[i].Comments.Count > 0)
+                                    {
+                                        for (int j = 0; j < Model.Answers[i].Comments.Count; j++)
+                                        {<div class="row" style="display: flex; justify-content: flex-end;">
+                                                <div class="col-sm-11 d-flex">
+                                                    <div class="commented-section mt-2">
+                                                        <div class="d-flex flex-row align-items-center commented-user">
+                                                            <h5 class="mr-3">@Model.Answers[i].Comments[j].User.Name</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">@Model.Answers[i].Comments[j].CommentDateAndTime</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-11">
+                                                    <p class="comment-text-sm">@Model.Answers[i].Comments[j].CommentText</p>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                        }
+
+                                    }
+
+                                    <!-- Add comment -->
+                                    <button class="btn btn-info editbutton"><i class='fas fa-comment-dots'></i></button>
+                                    <form class="needs-validation hidden" novalidate="novalidate" action="/questions/addcomment" method="post" id="newForm">
+                                        <div class="form-group form-row">
+                                            <div class="col-sm-12">
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="QuestionID" value="@Model.QuestionID" />
+                                                <input type="hidden" name="AnswerID" value="@Model.Answers[i].AnswerID" />
+                                                <input type="hidden" name="UserID" value="@Convert.ToInt32(Session["CurrentUserID"])" />
+                                                <div class="form-row">
+                                                    <div class="form-group col-sm-12">
+                                                        <textarea class="form-control" id="txtComment" placeholder="Enter comment" name="CommentText" required="required" data-pattern="[A-z0-9 ,-]{1,}"></textarea>
+                                                        <div class="valid-feedback">
+                                                            Looks good!
+                                                        </div>
+                                                        <div class="invalid-feedback">
+                                                            Please enter comment.
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary" data-formid="newForm">Add Comment</button>
+                                                <div class="text-danger">
+                                                    @Html.ValidationSummary()
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            }
+                            <!-- Add answer -->
+                            @if (Session["CurrentUsername"] != null)
+                            {
+                                <form class="needs-validation" novalidate="novalidate" action="/questions/addanswer" method="post" id="newForm">
+                                    <div class="form-group form-row">
+                                        <div class="col-sm-12">
+                                            <h4>Add your answer</h4>
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="QuestionID" value="@Model.QuestionID" />
+                                            <div class="form-row">
+                                                <div class="form-group col-sm-12">
+                                                    <textarea class="form-control" id="txtAnswer" placeholder="Enter answer" name="AnswerText" required="required" data-pattern="[A-z0-9 ,-]{1,}"></textarea>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please enter answer.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary" data-formid="newForm">Add Answer</button>
+                                            <div class="text-danger">
+                                                @Html.ValidationSummary()
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            }
                         </div>
-                    </div>
-                </div>
-            </form>
-        }
+        </div>
     </div>
 </div>
 

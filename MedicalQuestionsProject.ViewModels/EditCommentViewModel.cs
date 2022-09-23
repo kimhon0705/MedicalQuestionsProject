@@ -8,28 +8,26 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedicalQuestionsProject.ViewModels
 {
-    public class EditAnswerViewModel
+    public class EditCommentViewModel
     {
         [Required]
-        public int AnswerID { get; set; }
+        public int CommentID { get; set; }
 
         [Required]
-        public string AnswerText { get; set; }
+        public string CommentText { get; set; }
 
         [Required]
-        public DateTime AnswerDateAndTime { get; set; }
+        public DateTime CommentDateAndTime { get; set; }
 
         [Required]
         public int UserID { get; set; }
 
         [Required]
-        public int QuestionID { get; set; }
+        public int AnswerID { get; set; }
 
         [Required]
-        public int VotesCount { get; set; }
-        
 
-        public virtual QuestionViewModel Question { get; set; }
-        
+
+        public virtual AnswerViewModel Answer { get; set; }
     }
 }

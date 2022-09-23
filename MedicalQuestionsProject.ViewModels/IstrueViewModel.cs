@@ -8,12 +8,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedicalQuestionsProject.ViewModels
 {
-    public class VoteViewModel
+    public class IstrueViewModel
     {
         public int VoteID { get; set; }
         public int UserID { get; set; }
         public int AnswerID { get; set; }
-        public bool IsTrue { get; set; }
+        public bool IstrueValue { get; set; }
         public int VoteValue { get; set; }
     }
 }

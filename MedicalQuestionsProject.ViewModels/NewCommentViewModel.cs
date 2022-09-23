@@ -8,19 +8,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedicalQuestionsProject.ViewModels
 {
-    public class EditQuestionViewModel
+    public class NewCommentViewModel
     {
         [Required]
+        public string CommentText { get; set; }
+
+        [Required]
+        public DateTime CommentDateAndTime { get; set; }
+
+        [Required]
+        public int UserID { get; set; }
+
+        [Required]
+        public int AnswerID { get; set; }
         public int QuestionID { get; set; }
-
-        [Required]
-        public string QuestionName { get; set; }
-
-        [Required]
-        public DateTime QuestionDateAndTime { get; set; }
-
-        [Required]
-        public int CategoryID { get; set; }
-        
     }
 }

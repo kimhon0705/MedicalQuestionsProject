@@ -28,17 +28,17 @@ namespace MedicalQuestionsProject.Controllers
         public ActionResult TopViews()
         {
             List<QuestionViewModel> questions = this.qs.GetQuestions().OrderByDescending(v => v.ViewsCount).ToList();
-            return View("Index", questions);
+            return View("Questions", questions);
         }
         public ActionResult TopVotes()
         {
             List<QuestionViewModel> questions = this.qs.GetQuestions().OrderByDescending(v => v.VotesCount).ToList();
-            return View("Index", questions);
+            return View("Questions", questions);
         }
         public ActionResult Newest()
         {
             List<QuestionViewModel> questions = this.qs.GetQuestions().OrderByDescending(v => v.QuestionDateAndTime).ToList();
-            return View("Index", questions);
+            return View("Questions", questions);
         }
         public ActionResult About()
         {

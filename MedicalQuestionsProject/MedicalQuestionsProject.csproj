@@ -157,12 +157,19 @@
     <Content Include="Content\Styles.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\avatar.png" />
+    <Content Include="Images\br1.jpg" />
+    <Content Include="Images\br3.jpg" />
+    <Content Include="Images\br4.jpg" />
     <Content Include="Images\down-color.png" />
     <Content Include="Images\down-empty.png" />
     <Content Include="Images\map.svg" />
+    <Content Include="Images\MedicalQuestions.png" />
+    <Content Include="Images\MTK.png" />
     <Content Include="Images\up-color.png" />
     <Content Include="Images\up-empty.png" />
     <Content Include="Images\user.png" />
+    <Content Include="js\core.min.js" />
+    <Content Include="js\script.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -194,10 +201,13 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\QuestionView.css" />
+    <Content Include="Scripts\style.css" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\ViewQuestionsSheet1.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

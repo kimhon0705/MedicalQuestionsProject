@@ -17,6 +17,7 @@ namespace MedicalQuestionsProject
             container.RegisterType<IUsersService, UsersService>();
             container.RegisterType<ICategoriesService, CategoriesService>();
             container.RegisterType<IAnswersService, AnswersService>();
+            container.RegisterType<ICommentsService, CommentsService>();
 
             DependencyResolver.SetResolver(new Unity.Mvc5.UnityDependencyResolver(container));
 

@@ -4,6 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -11,13 +12,12 @@
     @Styles.Render("~/Styles/bootstrap")
     @Styles.Render("~/Styles/site")
     @Scripts.Render("~/Scripts/bootstrap")
+
 </head>
 <body>
-    <div class="container-fluid">
+   <div class="container-fluid">
         <nav class="navbar navbar-expand-sm text-light navbar-light">
-            <a class="navbar-brand" href="#">Medical Questions</a>
-
-
+            <a class="navbar-brand" href="/home/index"><img src="~/images/MedicalQuestions.png" alt="Logo" style="width:220px"/></a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavBar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -82,7 +82,7 @@
             </div>
 
             <form class="form-inline" action="/home/search">
-                <input type="search" class="form-control mr-sm-2" style="width:150px" placeholder="Search" name="str">
+                <input type="search" class="form-control mr-sm-2" style="width:140px" placeholder="Search" name="str">
                 <button class="btn btn-success">Search</button>
             </form>
         </nav>

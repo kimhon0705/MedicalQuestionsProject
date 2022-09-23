@@ -16,8 +16,11 @@ namespace MedicalQuestionsProject.ViewModels
         public int UserID { get; set; }
         public int QuestionID { get; set; }
         public int VotesCount { get; set; }
+        public bool Istrue { get; set; }
         public virtual UserViewModel User { get; set; }
-        public virtual List<VoteViewModel> Votes { get; set; }
+        public virtual List<IstrueViewModel> Votes { get; set; }
         public int CurrentUserVoteType { get; set; }
+        public int CurrentUserIstrueType { get; set; }
+        public virtual List<CommentViewModel> Comments { get; set; }
     }
 }

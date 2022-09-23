@@ -26,7 +26,8 @@ UserID int references Users(UserID) on delete cascade,
 CategoryID int references Categories(CategoryID) on delete cascade,
 VotesCount int,
 AnswersCount int,
-ViewsCount int)
+ViewsCount int,
+Istrue bit default(0))
 go
 
 create table Answers(
@@ -34,8 +35,19 @@ AnswerID int primary key identity(1,1),
 AnswerText nvarchar(max),
 AnswerDateAndTime datetime,
 UserID int references Users(UserID),
+CommentsCount int,
 QuestionID int references Questions(QuestionID) on delete cascade,
-VotesCount int)
+VotesCount int,
+Istrue bit default(0))
+go
+
+create table Comments(
+CommentID int primary key identity(1,1),
+CommentText nvarchar(max),
+CommentDateAndTime datetime,
+UserID int references Users(UserID),
+AnswerID int references Answers(AnswerID) on delete cascade
+)
 go
 
 create table Votes(

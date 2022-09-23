@@ -9,8 +9,10 @@ namespace MedicalQuestionsProject.Repositories
     {
         void InsertAnswer(Answer a);
         void UpdateAnswer(Answer a);
+        void UpdateAnswerCommentsCount(int aid, int value);
         void UpdateAnswerVotesCount(int aid, int uid, int value);
         void DeleteAnswer(int aid);
+        List<Answer> GetAnswers(int AnswerID);
         List<Answer> GetAnswersByQuestionID(int qid);
         List<Answer> GetAnswersByAnswerID(int AnswerID);
     }
@@ -66,6 +68,13 @@ namespace MedicalQuestionsProject.Repositories
                 qr.UpdateQuestionAnswersCount(ans.QuestionID, -1);
             }
         }
+
+        public List<Answer> GetAnswers(int aid)
+        {
+            List<Answer> ans = db.Answers.Where(temp => temp.Istrue == true).OrderBy(temp => temp.AnswerID).ToList();
+            return ans;
+        }
+
         public List<Answer> GetAnswersByQuestionID(int qid)
         {
             List<Answer> ans = db.Answers.Where(temp => temp.QuestionID == qid).OrderByDescending(temp => temp.AnswerDateAndTime).ToList();
@@ -75,6 +84,16 @@ namespace MedicalQuestionsProject.Repositories
         {
             List<Answer> ans = db.Answers.Where(temp => temp.AnswerID == aid).ToList();
             return ans;
+        }
+
+        public void UpdateAnswerCommentsCount(int aid, int value)
+        {
+            Answer at = db.Answers.Where(temp => temp.AnswerID == aid).FirstOrDefault();
+            if (at != null)
+            {
+                at.CommentsCount += value;
+                db.SaveChanges();
+            }
         }
     }
 }

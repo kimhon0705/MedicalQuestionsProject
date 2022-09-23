@@ -24,5 +24,7 @@ namespace MedicalQuestionsProject.ViewModels
 
         [Required]
         public int VotesCount { get; set; }
+        
+        
     }
 }

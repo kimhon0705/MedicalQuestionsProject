@@ -65,7 +65,7 @@ namespace MedicalQuestionsProject.ServiceLayer
         public List<QuestionViewModel> GetQuestions()
         {
             List<Question> q = qr.GetQuestions();
-            var config = new MapperConfiguration(cfg => { cfg.CreateMap<Category, CategoryViewModel>(); cfg.CreateMap<Question, QuestionViewModel>(); cfg.CreateMap<Vote, VoteViewModel>(); cfg.CreateMap<Answer, AnswerViewModel>(); cfg.CreateMap<User, UserViewModel>(); cfg.IgnoreUnmapped(); });
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<Category, CategoryViewModel>(); cfg.CreateMap<Question, QuestionViewModel>(); cfg.CreateMap<Vote, IstrueViewModel>(); cfg.CreateMap<Answer, AnswerViewModel>(); cfg.CreateMap<User, UserViewModel>(); cfg.IgnoreUnmapped(); });
             IMapper mapper = config.CreateMapper();
             List<QuestionViewModel> qvm = mapper.Map<List<Question>, List<QuestionViewModel>>(q);
             return qvm;
@@ -88,7 +88,7 @@ namespace MedicalQuestionsProject.ServiceLayer
                     cfg.CreateMap<User, UserViewModel>();
                     cfg.CreateMap<Category, CategoryViewModel>();
                     cfg.CreateMap<Answer, AnswerViewModel>();
-                    cfg.CreateMap<Vote, VoteViewModel>();
+                    cfg.CreateMap<Vote, IstrueViewModel>();
                     cfg.IgnoreUnmapped();
                 });
 
@@ -104,7 +104,7 @@ namespace MedicalQuestionsProject.ServiceLayer
 
                     item.CurrentUserVoteType = 0;
 
-                    VoteViewModel vote = item.Votes.Where(temp => temp.UserID == UserID).FirstOrDefault();
+                    IstrueViewModel vote = item.Votes.Where(temp => temp.UserID == UserID).FirstOrDefault();
 
                     if (vote != null)
 
@@ -114,6 +114,7 @@ namespace MedicalQuestionsProject.ServiceLayer
 
                     }
 
+                    
                 }
 
             }
