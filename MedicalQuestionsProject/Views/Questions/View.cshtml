@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link href="~/Scripts/ViewQuestionsSheet1.css" rel="stylesheet" />
 </head>
@@ -174,6 +174,7 @@
                                         <h5 class="mr-3">@Model.Answers[i].User.Name</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">@Model.Answers[i].AnswerDateAndTime</span>
                                     </div>
                                     <div class="col-sm-12 comment-text-sm"><span>@Model.Answers[i].AnswerText</span></div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -242,7 +243,7 @@
                                             <input type="hidden" name="QuestionID" value="@Model.QuestionID" />
                                             <div class="form-row">
                                                 <div class="form-group col-sm-12">
-                                                    <textarea class="form-control" id="txtAnswer" placeholder="Enter answer" name="AnswerText" required="required" data-pattern="[A-z0-9 ,-]{1,}"></textarea>
+                                                    <textarea class="form-control" id="summernote" placeholder="Enter answer" name="AnswerText" required="required" data-pattern="[A-z0-9 ,-]{1,}"></textarea>
                                                     <div class="valid-feedback">
                                                         Looks good!
                                                     </div>
@@ -320,4 +321,20 @@
         $(this).parent().find(".answer").hide();
     });
 </script>
+@*<script>
+    $('#summernote').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
+</script>*@
 

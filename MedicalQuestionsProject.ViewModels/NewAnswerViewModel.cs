@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
 namespace MedicalQuestionsProject.ViewModels
 {
     public class NewAnswerViewModel
     {
+        
         [Required]
         public string AnswerText { get; set; }
 

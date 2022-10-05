@@ -27,4 +27,5 @@ namespace MedicalQuestionsProject.DomainModels
         public virtual List<Comment> Comments { get; set; }
         
     }
+
 }

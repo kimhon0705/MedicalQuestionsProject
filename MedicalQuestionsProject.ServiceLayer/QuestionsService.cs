@@ -5,7 +5,9 @@ using MedicalQuestionsProject.DomainModels;
 using MedicalQuestionsProject.ViewModels;
 using MedicalQuestionsProject.Repositories;
 using AutoMapper;
+using System.Web.Mvc;
 using AutoMapper.Configuration;
+
 
 namespace MedicalQuestionsProject.ServiceLayer
 {
@@ -61,7 +63,7 @@ namespace MedicalQuestionsProject.ServiceLayer
         {
             qr.DeleteQuestion(qid);
         }
-
+        
         public List<QuestionViewModel> GetQuestions()
         {
             List<Question> q = qr.GetQuestions();
