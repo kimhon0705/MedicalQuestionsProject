@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
 
+
 namespace MedicalQuestionsProject.ServiceLayer
 {
     public static class MapperExtensions

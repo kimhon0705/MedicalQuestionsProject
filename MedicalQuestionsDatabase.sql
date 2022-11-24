@@ -88,7 +88,7 @@ go
 insert into Categories values('Fever')
 go
 
-insert into Questions values('How to treat skin fungus?','2022-4-25 11:10pm', 2, 1, 0, 0, 0)
+insert into Questions values('How to treat skin fungus?','2022-4-25 11:10pm', 2, 1, 0, 0, 0, 0)
 go
-insert into Questions values('How to treat measles?','2022-4-26 10:10am', 2, 2, 0, 0, 0)
+insert into Questions values('How to treat measles?','2022-4-26 10:10am', 2, 2, 0, 0, 0, 0)
 go

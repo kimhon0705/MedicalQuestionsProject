@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MedicalQuestionsProject.DomainModels;
 
+
 namespace MedicalQuestionsProject.Controllers
 {
     public class AdminQuestionController : Controller
@@ -111,10 +112,6 @@ namespace MedicalQuestionsProject.Controllers
         }
 
        
-
-
-
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

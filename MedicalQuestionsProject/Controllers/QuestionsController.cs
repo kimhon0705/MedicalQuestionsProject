@@ -78,9 +78,10 @@ namespace MedicalQuestionsProject.Controllers
             return View(qvm);
         }
 
-        [HttpPost]
+       
         [ValidateAntiForgeryToken]
         [UserAuthorizationFilterAttribute]
+        [HttpPost, ValidateInput(false)]
         public ActionResult AddAnswer(NewAnswerViewModel navm)
         {
             //currrent working user id
@@ -104,7 +105,7 @@ namespace MedicalQuestionsProject.Controllers
                 return View("View", qvm);
             }
         }
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
         [UserAuthorizationFilterAttribute]
         public ActionResult AddComment(NewCommentViewModel ncvm)
@@ -132,7 +133,7 @@ namespace MedicalQuestionsProject.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult EditAnswer(EditAnswerViewModel avm)
         {
             if (ModelState.IsValid)
@@ -162,6 +163,8 @@ namespace MedicalQuestionsProject.Controllers
                 return RedirectToAction("View", new { id = cvm.AnswerID });
             }
         }
+
+        
         [UserAuthorizationFilterAttribute]
         public ActionResult Create()
         {
