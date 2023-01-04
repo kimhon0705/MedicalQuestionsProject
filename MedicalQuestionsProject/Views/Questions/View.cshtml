@@ -44,7 +44,7 @@
                         <div class="col-sm-10 offset-sm-2">
                             <div class="d-flex flex-column ml-3">
                                 <div class="d-flex flex-row post-title">
-                                    <h3>@Model.QuestionName</h3>
+                                    <h2>@Html.Raw(Model.QuestionName)</h2>
                                     <div class="col-sm-2" style="font-size: 22px">
                                         <span class="text-info ml-2">
                                             @if (Convert.ToInt32(Session["CurrentUserID"]) != Model.UserID)
@@ -165,7 +165,7 @@
                                             <input type="hidden" name="QuestionID" value="@Model.Answers[i].QuestionID" />
                                             <div class="form-row">
                                                 <div class="form-group col-sm-12">
-                                                    <textarea class="form-control" id="txtAnswer" placeholder="Enter answer" name="AnswerText" required="required">@Model.Answers[i].AnswerText</textarea>
+                                                    <textarea class="form-control" id="txtAnswer" placeholder="Enter answer" name="AnswerText" required="required">@Html.Raw(Model.Answers[i].AnswerText)</textarea>
                                                     <div class="valid-feedback">
                                                         Looks good!
                                                     </div>

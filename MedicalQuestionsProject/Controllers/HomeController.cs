@@ -40,6 +40,7 @@ namespace MedicalQuestionsProject.Controllers
             List<QuestionViewModel> questions = this.qs.GetQuestions().OrderByDescending(v => v.QuestionDateAndTime).ToList();
             return View("Questions", questions);
         }
+
         public ActionResult About()
         {
             return View();
@@ -64,7 +65,7 @@ namespace MedicalQuestionsProject.Controllers
 
         public ActionResult Search(string str)
         {
-            List<QuestionViewModel> questions = this.qs.GetQuestions().Where(temp => temp.QuestionName.ToLower().Contains(str.ToLower()) || temp.Category.CategoryName.ToLower().Contains(str.ToLower())).ToList();
+            List<QuestionViewModel> questions = this.qs.GetQuestions().Where(temp => temp.QuestionName.ToString().Contains(str.ToLower()) || temp.Category.CategoryName.ToLower().Contains(str.ToLower())).ToList();
             ViewBag.str = str;
             return View(questions);
         }

@@ -20,6 +20,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.QuestionName)
+                
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.QuestionDateAndTime)
@@ -64,6 +65,8 @@
                     @Html.ActionLink("Edit", "Edit", new { id = item.QuestionID }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.QuestionID })
                 </td>
+
+               
             </tr>
         }
 

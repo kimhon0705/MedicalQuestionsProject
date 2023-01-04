@@ -90,7 +90,7 @@
                         <div class="w3-col l3 m6 w3-margin-bottom">
                             <div class="w3-card">
                                 <div class="w3-container" style="padding: 1.2rem">
-                                    <h3>@item.QuestionName</h3>
+                                    <h3>@Html.Raw(item.QuestionName)</h3>
                                     <p class="w3-opacity"><span style="font-weight:900">Date:</span> @item.QuestionDateAndTime</p>
                                     <p class="w3-opacity"><span style="font-weight:900">Votes:</span> @item.VotesCount</p>
                                     <p class="w3-opacity"><span style="font-weight:900">Views:</span> @item.ViewsCount</p>

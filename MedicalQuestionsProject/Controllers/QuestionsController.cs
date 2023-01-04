@@ -173,7 +173,7 @@ namespace MedicalQuestionsProject.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
         [UserAuthorizationFilter]
         public ActionResult Create(NewQuestionViewModel qvm)
